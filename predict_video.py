@@ -102,7 +102,7 @@ for videoPath in sorted(myPaths):
 
     # create a session to perform inference
     with model.as_default():
-        with tf.Session(graph=model) as sess:
+        with tf.compat.v1.Session(graph=model) as sess:
             # initialize the points to the video files
             stream = cv2.VideoCapture(videoPath)
             videoWriter = None

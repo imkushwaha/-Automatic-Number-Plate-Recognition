@@ -109,7 +109,7 @@ plateDisplay = PlateDisplay()
 
 # create a session to perform inference
 with model.as_default():
-  with tf.Session(graph=model) as sess:
+  with tf.compat.v1.Session(graph=model) as sess:
     # create a predicter, used to predict plates and chars
     predicter = Predicter(model, sess, categoryIdx)
 

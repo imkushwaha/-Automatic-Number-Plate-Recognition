@@ -1,6 +1,7 @@
 from PIL import Image
 import cv2
 import tensorflow as tf
+tf.compat.v1.disable_eager_execution()
 from base2designs.utils import label_map_util
 from base2designs.plates.plateFinder import PlateFinder
 from base2designs.plates.predicter import Predicter
@@ -46,7 +47,7 @@ class DetectVehicleNumberPlate:
     def predictImages(self, imagePathArg, pred_stagesArg, croppedImagepath, numPlateOrg):
         # create a session to perform inference
         with numPlateOrg.model.as_default():
-            with tf.Session(graph=numPlateOrg.model) as sess:
+            with tf.compat.v1.Session(graph=numPlateOrg.model) as sess:       #sess = tf.compat.v1.Session()
                 # create a predicter, used to predict plates and chars
                 predicter = Predicter(numPlateOrg.model, sess, numPlateOrg.categoryIdx)
                 # load the image from disk
